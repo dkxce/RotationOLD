@@ -1,0 +1,1023 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script src="jquery.js" type="text/javascript"></script>
+	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAPJwcxJWgstC-TQdLD0LjoRTUsxlQJ9YZ4wb5ueu7uKCpKgWA1BR2VCNcGy4p1s_a7WvvhK-QyQzplw" type="text/javascript"></script>
+<style type="text/css">
+	div#POIList { width:800px; border:solid 1px #F0F0F0; }
+	div#POI { border-bottom:double 4px black; margin:5px; }
+	div#itm { height:22px; }
+	div#itm2 { height:25px; }
+	input { border:solid 1px silver; }
+	input#id { width:66px;border:none;cursor:default; }
+	input#Lat { width:130px; background:#CCFFCC; }
+	input#Lon { width:130px; background:#CCFFCC; }
+	select { border:solid 1px silver; }
+	select#region { width:240px; background:#FFFFCC; }
+	select#InState { width:200px; }
+	input#Name_RU { width:300px; }
+	input#Name_EN { width:300px; display:none; }
+	input#Street_RU { background:#EFEFEF;width:600px; border:none; border-bottom:solid 1px silver; }
+	input#Street_EN { background:#EFEFEF;width:600px; border:none; border-bottom:solid 1px silver; display:none; }
+	input#City_RU { background:#EFEFEF;width:600px; border:none; border-bottom:solid 1px silver; }
+	input#City_EN { background:#EFEFEF;width:600px; border:none; border-bottom:solid 1px silver; display:none; }
+	input#A_Ext_RU { background:#EFEFEF;width:530px; border:none; border-bottom:solid 1px silver; }
+	input#A_Ext_EN { background:#EFEFEF;width:530px; border:none; border-bottom:solid 1px silver; display:none; }
+	input#C_Ext_RU { background:#EFEFEF;width:510px; border:none; border-bottom:solid 1px silver; }
+	input#C_Ext_EN { background:#EFEFEF;width:510px; border:none; border-bottom:solid 1px silver; display:none; }
+	input#HouseNo { background:#EFEFEF;width:592px; border:none; border-bottom:solid 1px silver; }
+	input#ZIP { background:#EFEFEF;width:554px; border:none; border-bottom:solid 1px silver; }
+	input#DTCreated { width:120px; border:none; color:navy; background:#EEEEFF; }
+	input#DTModified { width:120px; border:none; color:maroon; background:#FFEEEE; }
+	input#Expires { width:120px; color:black; border:none;border-bottom:dashed 1px gray; }
+	input#SymbolID { width:180px; background:#EEEEEE; border:none;border-bottom:dashed 1px gray; }
+	input#OwnerComment {background:#EFEFEF; width:632px; border:none;border-bottom:dashed 1px gray; }
+	input#ModeratorText { background:#EFEFEF;width:628px; border:none;border-bottom:dashed 1px gray; }
+	input#ModeratorComment { background:#EFEFEF;width:600px; border:none;border-bottom:dashed 1px gray; }
+	input#CreatedBy { width:440px; background:#EEEEEE; border:none;border-bottom:dashed 1px gray; }
+	input#Categories { width:650px; border:none; border-bottom:dashed 1px gray; }
+	input#Author { width:210px; border:none; border-bottom:dashed 1px gray; }
+	input#Owner { width:56px;  }
+	input#Phone { background:#EFEFEF;width:592px; border:none; border-bottom:solid 1px silver; }
+	input#Fax { background:#EFEFEF;width:618px; border:none; border-bottom:solid 1px silver; }
+	input#Email { background:#EFEFEF;width:616px; border:none; border-bottom:solid 1px silver; }
+	input#Url { background:#EFEFEF;width:630px; border:none; border-bottom:solid 1px silver; }
+	textarea#Desc_RU { width:99%; border:solid 1px silver;height:80px; }
+	textarea#Desc_EN { width:99%; border:solid 1px silver;height:80px; display:none; }
+	span#txt { color:#999999; }
+	span#txt2 { color:#CCCCCC; }
+	span#txt3 { color:#666666; }
+	span#txt4 { color:#EFEFEF; }
+	span#catSel { background:#EEEEEE;border:solid 1px gray;cursor:pointer; }
+	span#moreSel { background:#EEEEEE;border:solid 1px silver;cursor:pointer; }
+	span#exs_D { background:#FFFF33;border:dashed 1px silver;cursor:default; }
+	span#exs_A { background:#FFFF33;border:dashed 1px silver;cursor:default; }
+	span#exs_C { background:#FFFF33;border:dashed 1px silver;cursor:default; }
+	span#exs_my { background:#33FFFF;border:dashed 1px silver;cursor:default; }
+	span#exs_mo { background:#33FFFF;border:dashed 1px silver;cursor:default; }
+	div#hidden { background:#EFEFEF;padding:5px;  }
+	div#line5 { height:26px;border-bottom:solid 1px gray; }
+	div#abs { font-size:10px; height:10px; };
+	.inState0 { background: white; color: black; }
+	.inState1 { background: #CCCCFF; color: black; }
+	.inState2 { background: #FFFFCC; color: black; }
+	.inState3 { background: #CCFFCC; color: black; }
+	.inState4 { background: #FFCCCC; color: black; }
+	.inState5 { background: black; color: white; }	
+	.vis { display: block; }
+	.inl { display: inline; }
+	.hid { display: none; }
+	.vis0 { visibility: hidden; } 
+	.vis1 { visibility: visible; } 
+	span#mStyle { background:#FF6666;}
+	b#mLetter { cursor:pointer; }
+	div#map_canvas { border:solid 1px gray;width:800px;height:360px; }
+	div#prePOIdiv { width:800px; }
+</style>
+</head>
+<body onload="init()">
+	<div id="map_canvas"></div>
+	<div id="prePOIdiv">
+		<a href="#" onclick="$('div#POIList div#POI').each(function(index,value){more(value,'hid');});return false;">свернуть все</a> |
+		<a href="#" onclick="$('div#POIList div#POI').each(function(index,value){more(value,'vis');});return false;">развернуть все</a> ||
+		<a href="#" onclick="$('div#POIList div#POI').each(function(index,value){reload(value);});return false;">обновить все</a> |
+		<a href="#" onclick="$('div#POIList div#POI').each(function(index,value){save(value);});return false;">сохранить все</a> | 
+		<a href="#" onclick="$('div#POIList div#POI').each(function(index,value){DeleteMarker(value);});return false;">удалить маркеры</a>
+	</div>
+	<div id="POIList">
+		<div id="POI">
+			<div id="line1">
+			  <div id="itm">
+				<input id="id" type="text" value="%ID%" readonly="true" title="Номер"/>
+				<select id="region" title="Регион">
+					<option value="0">%Region%</option>
+				</select>
+				<input id="Lat" onkeyup="checkDouble(this);WaitMarker(this);" type="text" value="%LAT%" title="Широта в градусах с дробной частью после точки (-180.0 .. 180.0)"/>
+				<input id="Lon" onkeyup="checkDouble(this);WaitMarker(this);" type="text" value="%LON%" title="Долгота в градусах с дробной частью после точки (-90.0 .. 90.0)"/>
+				<select id="InState" onchange="ChangeInState(this)" class="InState1" title="Статус">
+					<option value="0">Не готов (0)</option>
+					<option value="1">Виден только мне (1)</option>
+					<option value="2">Готов к модерации (2)</option>
+					<option value="3">Принят модератором (3)</option>
+					<option value="4">Отклонен модератором (4)</option>
+					<option value="5">Помечен к удалению (5)</option>
+				  </select>
+			  </div>
+			</div>
+			<div id="name_er">			
+			  <div id="itm">
+				<span id="txt">Имя (RU):</span> 
+				<input id="Name_RU" type="text" value="%NAME_RU%" title="Наименование по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+				<input id="Name_EN" type="text" value="%NAME_EN%" title="Наименование по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+				<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a> &nbsp; 
+				<input id="DTCreated" type="text" value="%DTCreated%" title="Добавлено" readonly="true"/>
+				<input id="DTModified" type="text" value="%DTModified%" title="Изменено" readonly="true"/>
+				<input id="Expires" type="text" value="%Expires%" title="Действительно до"/>
+			  </div>				
+			</div>
+			<div id="cats">
+			  <div id="itm2">
+				<span id="txt">Категории:</span> 
+				<input id="Categories" type="text" title="Категории" value="%Categories%" readonly="true"/>
+				<span id="catSel" title="Выбрать категории..." onclick="sCat(this);">&nbsp;...&nbsp;</span>
+				&nbsp;&nbsp;<span id="mStyle" title="Маркер">&nbsp;<b id="mLetter" title="Показать маркер" onclick="CenterMap(this);">0</b>&nbsp;</span>
+			  </div>
+			</div>
+			<div id="hidden" class="hid">
+				<div id="itm">	
+					<span id="txt">SymbolID:</span> <input id="SymbolID" type="text" value="%SymbolID%" title="SymbolID" maxlength="100"/>
+					&nbsp; 
+					<span id="txt">Источник:</span> <input id="CreatedBy" type="text" value="%CreatedBy%" title="Источник/Создано" maxlength="200"/>
+				</div>
+				<div id="desc">	
+					<span id="txt">Описание (RU):</span> <a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a> 
+					<textarea id="Desc_RU" onkeyup="confirm_ext(this);">%Desc_RU%</textarea>
+					<textarea id="Desc_EN" onkeyup="confirm_ext(this);">%Desc_EN%</textarea>
+				</div>
+				<div id="address">
+				  <div id="line1">
+					<div id="itm">	
+						<span id="txt3">Адрес, улица (RU):</span> 
+						<input id="Street_RU" type="text" value="%Street_RU%" title="Наименование улицы по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<input id="Street_EN" type="text" value="%Street_EN%" title="Наименование улицы по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a>
+					</div>
+				  </div>
+				  <div id="line2">
+					<div id="itm">	
+						<span id="txt4">Адрес, </span><span id="txt3">номер дома:</span> 
+						<input id="HouseNo" type="text" value="%HouseNo%" title="Наименование улицы по-русски" maxlength="100" onkeyup="confirm_ext(this);"/>					</div>
+				  </div>
+				  <div id="line3">
+					<div id="itm">	
+						<span id="txt4">Адрес, </span><span id="txt3">город (RU):</span> 
+						<input id="City_RU" type="text" value="%City_RU%" title="Наименование города по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<input id="City_EN" type="text" value="%City_EN%" title="Наименование города по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a>
+					</div>
+				  </div>
+				  <div id="line4">
+					<div id="itm">	
+						<span id="txt4">Адрес, </span><span id="txt3">почтовый индекс:</span> 
+						<input id="ZIP" type="text" value="%ZIP%" title="Почтовый индекс" maxlength="100" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line5">
+					<div id="itm">	
+						<span id="txt4">Адрес, </span><span id="txt3">дополнительно (RU):</span> 
+						<input id="A_Ext_RU" type="text" value="%A_Ext_RU%" title="Дополнительная информация об адресе по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<input id="A_Ext_EN" type="text" value="%A_Ext_EN%" title="Дополнительная информация об адресе по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a>
+					</div>
+				  </div>
+				</div>
+				<div id="contacts">
+				  <div id="line1">
+					<div id="itm">	
+						<span id="txt3">Контакты, телефон:</span> 
+						<input id="Phone" type="text" value="%Phone%" title="Телефон" maxlength="200" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line2">
+					<div id="itm">	
+						<span id="txt4">Контакты, </span><span id="txt3">факс:</span> 
+						<input id="Fax" type="text" value="%Fax%" title="Факс" maxlength="200" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line3">
+					<div id="itm">	
+						<span id="txt4">Контакты, </span><span id="txt3">Email:</span> 
+						<input id="Email" type="text" value="%Email%" title="Email" maxlength="200" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line4">
+					<div id="itm">	
+						<span id="txt4">Контакты, </span><span id="txt3">Url:</span> 
+						<input id="Url" type="text" value="%Url%" title="Url" maxlength="200" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line5">
+					<div id="itm">	
+						<span id="txt4">Контакты, </span><span id="txt3">дополнительно (RU):</span> 
+						<input id="C_Ext_RU" type="text" value="%C_Ext_RU%" title="Дополнительная информация по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<input id="C_Ext_EN" type="text" value="%C_Ext_EN%" title="Дополнительная информация по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a>
+					</div>
+				  </div>
+				</div>
+				<div id="acomments">  
+				  <div id="itm">	
+					<span id="txt3">Коментарий автора:</span> <input id="OwnerComment" type="text" value="%OwnerComment%" title="Комментарий автора" maxlength="200" onkeyup="confirm_ext(this);"/>
+				  </div>
+				</div>
+				<div id="mtext">  
+				  <div id="itm">
+					<span id="txt3">Отметка модератора:</span> <input id="ModeratorText" type="text" value="%ModeratorText%" title="Отметка модератора" maxlength="200" onkeyup="confirm_ext(this);"/>
+				  </div>
+				</div>
+				<div id="mcomment">
+				  <div id="itm2">
+					<span id="txt3">Коментарий модератора:</span> <input id="ModeratorComment" type="text" value="%ModeratorComment%" title="Комментарий модератора" maxlength="200"/>
+				  </div>
+				</div>
+			</div>
+			<div id="bottom">
+			  <div id="itm">			
+				<span id="txt">Автор:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input id="Author" type="text" value="%Author%" readonly="true"/>
+				<input id="Owner" type="text" value="%Owner%" maxlength="200" title="Код автора" class="vis1"/>
+				&nbsp; 
+				<span id="moreSel" title="Подробное/Сжатое описание" onclick="more(this);">&nbsp;подробно...&nbsp;</span>
+				<span id="moreSel" title="Обновить данные" onclick="reload(this);">&nbsp;обновить...&nbsp;</span>
+				<span id="moreSel" title="Сохранить данные" onclick="save(this);">&nbsp;сохранить...&nbsp;</span>
+				&nbsp;
+				<span id="exs_D" title="Описание">&nbsp; i &nbsp;</span>
+				<span id="exs_A" title="Адрес">&nbsp;А&nbsp;</span>
+				<span id="exs_C" title="Контакты">&nbsp;К&nbsp;</span>
+				<span id="exs_my" title="Комментарий автора">&nbsp;*&nbsp;</span>
+				<span id="exs_mo" title="Отметка модератора">&nbsp;?&nbsp;</span>				
+				&nbsp;<input id="mrkSet" type="radio" onclick="SelectMarker(this);" name="selMarker" title="Выберите, чтобы клик на карте установил координаты для этой POI"/>
+			  </div>			
+			</div>
+			<div id="abs">&nbsp;</div>
+		</div>		
+		<div id="POI">
+			<div id="line1">
+			  <div id="itm">
+				<input id="id" type="text" value="new" readonly="true" title="Номер"/>
+				<select id="region" title="Регион">
+					<option value="0">Московская область</option>
+				</select>
+				<input id="Lat" onkeyup="checkDouble(this);WaitMarker(this);" type="text" value="55.45" title="Широта в градусах с дробной частью после точки (-180.0 .. 180.0)"/>
+				<input id="Lon" onkeyup="checkDouble(this);WaitMarker(this);" type="text" value="37.39" title="Долгота в градусах с дробной частью после точки (-90.0 .. 90.0)"/>
+				<select id="InState" onchange="ChangeInState(this)" class="InState1" title="Статус">
+					<option value="0">Не готов (0)</option>
+					<option value="1">Виден только мне (1)</option>
+					<option value="2">Готов к модерации (2)</option>
+					<option value="3">Принят модератором (3)</option>
+					<option value="4">Отклонен модератором (4)</option>
+					<option value="5">Помечен к удалению (5)</option>
+				  </select>
+			  </div>
+			</div>
+			<div id="name_er">			
+			  <div id="itm">
+				<span id="txt">Имя (RU):</span> 
+				<input id="Name_RU" type="text" value="Тестовая Точка" title="Наименование по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+				<input id="Name_EN" type="text" value="Test Dot" title="Наименование по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+				<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a> &nbsp; 
+				<input id="DTCreated" type="text" value="??" title="Добавлено" readonly="true"/>
+				<input id="DTModified" type="text" value="??" title="Изменено" readonly="true"/>
+				<input id="Expires" type="text" value="??" title="Действительно до"/>
+			  </div>				
+			</div>
+			<div id="cats">
+			  <div id="itm2">
+				<span id="txt">Категории:</span> 
+				<input id="Categories" type="text" title="Категории" value="Point Of Interest" readonly="true"/>
+				<span id="catSel" title="Выбрать категории..." onclick="sCat(this);">&nbsp;...&nbsp;</span>
+				&nbsp;&nbsp;<span id="mStyle" title="Маркер">&nbsp;<b id="mLetter" title="Показать маркер" onclick="CenterMap(this);">0</b>&nbsp;</span>
+			  </div>
+			</div>
+			<div id="hidden" class="hid">
+				<div id="itm">	
+					<span id="txt">SymbolID:</span> <input id="SymbolID" type="text" value="" title="SymbolID" maxlength="100"/>
+					&nbsp; 
+					<span id="txt">Источник:</span> <input id="CreatedBy" type="text" value="dkxce" title="Источник/Создано" maxlength="200"/>
+				</div>
+				<div id="desc">	
+					<span id="txt">Описание (RU):</span> <a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a> 
+					<textarea id="Desc_RU" onkeyup="confirm_ext(this);">Описание</textarea>
+					<textarea id="Desc_EN" onkeyup="confirm_ext(this);"></textarea>
+				</div>
+				<div id="address">
+				  <div id="line1">
+					<div id="itm">	
+						<span id="txt3">Адрес, улица (RU):</span> 
+						<input id="Street_RU" type="text" value="" title="Наименование улицы по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<input id="Street_EN" type="text" value="" title="Наименование улицы по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a>
+					</div>
+				  </div>
+				  <div id="line2">
+					<div id="itm">	
+						<span id="txt4">Адрес, </span><span id="txt3">номер дома:</span> 
+						<input id="HouseNo" type="text" value="" title="Наименование улицы по-русски" maxlength="100" onkeyup="confirm_ext(this);"/>					</div>
+				  </div>
+				  <div id="line3">
+					<div id="itm">	
+						<span id="txt4">Адрес, </span><span id="txt3">город (RU):</span> 
+						<input id="City_RU" type="text" value="" title="Наименование города по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<input id="City_EN" type="text" value="" title="Наименование города по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a>
+					</div>
+				  </div>
+				  <div id="line4">
+					<div id="itm">	
+						<span id="txt4">Адрес, </span><span id="txt3">почтовый индекс:</span> 
+						<input id="ZIP" type="text" value="" title="Почтовый индекс" maxlength="100" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line5">
+					<div id="itm">	
+						<span id="txt4">Адрес, </span><span id="txt3">дополнительно (RU):</span> 
+						<input id="A_Ext_RU" type="text" value="" title="Дополнительная информация об адресе по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<input id="A_Ext_EN" type="text" value="" title="Дополнительная информация об адресе по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a>
+					</div>
+				  </div>
+				</div>
+				<div id="contacts">
+				  <div id="line1">
+					<div id="itm">	
+						<span id="txt3">Контакты, телефон:</span> 
+						<input id="Phone" type="text" value="100" title="Телефон" maxlength="200" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line2">
+					<div id="itm">	
+						<span id="txt4">Контакты, </span><span id="txt3">факс:</span> 
+						<input id="Fax" type="text" value="" title="Факс" maxlength="200" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line3">
+					<div id="itm">	
+						<span id="txt4">Контакты, </span><span id="txt3">Email:</span> 
+						<input id="Email" type="text" value="milokz@gmail.com" title="Email" maxlength="200" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line4">
+					<div id="itm">	
+						<span id="txt4">Контакты, </span><span id="txt3">Url:</span> 
+						<input id="Url" type="text" value="" title="Url" maxlength="200" onkeyup="confirm_ext(this);"/>
+					</div>
+				  </div>
+				  <div id="line5">
+					<div id="itm">	
+						<span id="txt4">Контакты, </span><span id="txt3">дополнительно (RU):</span> 
+						<input id="C_Ext_RU" type="text" value="" title="Дополнительная информация по-русски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<input id="C_Ext_EN" type="text" value="" title="Дополнительная информация по-английски" maxlength="200" onkeyup="confirm_ext(this);"/>
+						<a id="lang" href="#" onclick="ChangeLang(this);return false;" title="Сменить язык">RU</a>
+					</div>
+				  </div>
+				</div>
+				<div id="acomments">  
+				  <div id="itm">	
+					<span id="txt3">Коментарий автора:</span> <input id="OwnerComment" type="text" value="by html" title="Комментарий автора" maxlength="200" onkeyup="confirm_ext(this);"/>
+				  </div>
+				</div>
+				<div id="mtext">  
+				  <div id="itm">
+					<span id="txt3">Отметка модератора:</span> <input id="ModeratorText" type="text" value="" title="Отметка модератора" maxlength="200" onkeyup="confirm_ext(this);"/>
+				  </div>
+				</div>
+				<div id="mcomment">
+				  <div id="itm2">
+					<span id="txt3">Коментарий модератора:</span> <input id="ModeratorComment" type="text" value="" title="Комментарий модератора" maxlength="200"/>
+				  </div>
+				</div>
+			</div>
+			<div id="bottom">
+			  <div id="itm">			
+				<span id="txt">Автор:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input id="Author" type="text" value="478" readonly="true"/>
+				<input id="Owner" type="text" value="478" maxlength="200" title="Код автора" class="vis1"/>
+				&nbsp; 
+				<span id="moreSel" title="Подробное/Сжатое описание" onclick="more(this);">&nbsp;подробно...&nbsp;</span>
+				<span id="moreSel" title="Обновить данные" onclick="reload(this);">&nbsp;обновить...&nbsp;</span>
+				<span id="moreSel" title="Сохранить данные" onclick="save(this);">&nbsp;сохранить...&nbsp;</span>
+				&nbsp;
+				<span id="exs_D" title="Описание">&nbsp; i &nbsp;</span>
+				<span id="exs_A" title="Адрес">&nbsp;А&nbsp;</span>
+				<span id="exs_C" title="Контакты">&nbsp;К&nbsp;</span>
+				<span id="exs_my" title="Комментарий автора">&nbsp;*&nbsp;</span>
+				<span id="exs_mo" title="Отметка модератора">&nbsp;?&nbsp;</span>				
+				&nbsp;<input id="mrkSet" type="radio" onclick="SelectMarker(this);" name="selMarker" title="Выберите, чтобы клик на карте установил координаты для этой POI"/>
+			  </div>			
+			</div>
+			<div id="abs">&nbsp;</div>
+		</div>		
+	</div>	
+
+</body>
+	<script type="text/javascript">
+	
+		// Trim()
+		function trim12(str) 
+		{
+			var	str = str.replace(/^\s\s*/, ''),
+			ws = /\s/,
+			i = str.length;
+			while (ws.test(str.charAt(--i)));
+			return str.slice(0, i + 1);
+		}
+	
+		// Change InState Select Background
+		function ChangeInState(obj)
+		{
+			var myRoot = SelectRoot(obj,['line1','itm','InState']); 
+			myRoot.setAttribute("class",'inState'+myRoot.value);
+			SetMarker(obj,true);
+		}
+		
+		// Change inputs for custom Lang
+		function ChangeLang(obj,toLang)
+		{
+			var rus = obj.innerHTML == 'EN';			
+			if(toLang !== undefined) rus = toLang == 'RU';
+			var root = SelectRootPOI(obj);
+			var subroot = SelectSubNode(root,'name_er');
+			subroot = SelectSubNode(subroot,'itm');
+			SelectSubNode(subroot,'txt').innerHTML = 'Имя ('+ (rus ? 'RU' : 'EN') +'):'
+			SelectSubNode(subroot,'lang').innerHTML = rus ? 'RU' : 'EN';
+			SelectSubNode(subroot,'Name_RU').style.display = rus ? 'inline' : 'none';
+			SelectSubNode(subroot,'Name_EN').style.display = rus ? 'none' : 'inline';
+			
+			subroot = SelectSubNode(root,'hidden');
+			subroot = SelectSubNode(subroot,'desc');
+			SelectSubNode(subroot,'txt').innerHTML = 'Описание ('+ (rus ? 'RU' : 'EN') +'):'
+			SelectSubNode(subroot,'lang').innerHTML = rus ? 'RU' : 'EN';
+			SelectSubNode(subroot,'Desc_RU').style.display = rus ? 'inline' : 'none';
+			SelectSubNode(subroot,'Desc_EN').style.display = rus ? 'none' : 'inline';
+			
+			var myRoot = SelectRoot(obj,['hidden','address','line1','itm']);
+			SelectSubNode(myRoot,'txt3').innerHTML = 'Адрес, улица ('+ (rus ? 'RU' : 'EN') +'):'
+			SelectSubNode(myRoot,'lang').innerHTML = rus ? 'RU' : 'EN';
+			SelectSubNode(myRoot,'Street_RU').style.display = rus ? 'inline' : 'none';
+			SelectSubNode(myRoot,'Street_EN').style.display = rus ? 'none' : 'inline';
+			
+			myRoot = SelectRoot(obj,['hidden','address','line3','itm']);
+			SelectSubNode(myRoot,'txt3').innerHTML = 'город ('+ (rus ? 'RU' : 'EN') +'):'
+			SelectSubNode(myRoot,'lang').innerHTML = rus ? 'RU' : 'EN';
+			SelectSubNode(myRoot,'City_RU').style.display = rus ? 'inline' : 'none';
+			SelectSubNode(myRoot,'City_EN').style.display = rus ? 'none' : 'inline';
+			
+			myRoot = SelectRoot(obj,['hidden','address','line5','itm']);
+			SelectSubNode(myRoot,'txt3').innerHTML = 'дополнительно ('+ (rus ? 'RU' : 'EN') +'):'
+			SelectSubNode(myRoot,'lang').innerHTML = rus ? 'RU' : 'EN';
+			SelectSubNode(myRoot,'A_Ext_RU').style.display = rus ? 'inline' : 'none';
+			SelectSubNode(myRoot,'A_Ext_EN').style.display = rus ? 'none' : 'inline';
+			
+			myRoot = SelectRoot(obj,['hidden','contacts','line5','itm']);
+			SelectSubNode(myRoot,'txt3').innerHTML = 'дополнительно ('+ (rus ? 'RU' : 'EN') +'):'
+			SelectSubNode(myRoot,'lang').innerHTML = rus ? 'RU' : 'EN';
+			SelectSubNode(myRoot,'C_Ext_RU').style.display = rus ? 'inline' : 'none';
+			SelectSubNode(myRoot,'C_Ext_EN').style.display = rus ? 'none' : 'inline';
+		}
+		
+		// Find <div id="POI">
+		function SelectRootPOI(obj)
+		{
+			var res = obj;
+			while(res.id != "POI") res = res.parentNode;
+			return res;
+		}
+		
+		// Find SubNode by id="..."
+		function SelectSubNode(obj,id)
+		{
+			for(var x = 0; x < obj.childNodes.length; x++)
+				if(obj.childNodes[x].id == id) return obj.childNodes[x];
+			return null;
+		}
+		
+		// Find Full Node by id="..," with escalate to <div id="POI">
+		function SelectRoot(obj,ids)
+		{
+			var res = SelectRootPOI(obj);
+			for(var i=0;i<ids.length;i++) 
+				res = SelectSubNode(res,ids[i]);
+			return res;
+		}	
+		
+		// collapse POI info
+		function more(obj,cls)
+		{
+			var hObj = SelectRoot(obj,['hidden']);
+			var vis = hObj.getAttribute("class") == "hid";
+			if(cls !== undefined) vis = cls != "hid";
+		    hObj.setAttribute("class",vis ? "vis" : "hid");
+			SelectRoot(obj,['bottom','itm','moreSel']).innerHTML = vis ? '&nbsp; кратко...&nbsp;' : '&nbsp;подробно...&nbsp;';
+		}
+
+		// display icons text intered
+		function confirm_ext(obj)
+		{
+			var mainRoot = SelectRoot(obj,['bottom','itm']);
+			var ruR = SelectRoot(obj,['hidden','desc','Desc_RU']);
+			var enR = SelectRoot(obj,['hidden','desc','Desc_EN']);
+			var ex = (trim12(ruR.value).length > 0) || (trim12(enR.value).length > 0);			
+			SelectSubNode(mainRoot,'exs_D').setAttribute("class",ex ? 'vis1' : 'vis0');
+			
+			var len = 0;
+			if(trim12(SelectRoot(obj,['hidden','address','line1','itm','Street_RU']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','address','line1','itm','Street_EN']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','address','line2','itm','HouseNo']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','address','line3','itm','City_RU']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','address','line3','itm','City_EN']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','address','line4','itm','ZIP']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','address','line5','itm','A_Ext_RU']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','address','line5','itm','A_Ext_EN']).value).length > 0) len++;
+			SelectSubNode(mainRoot,'exs_A').setAttribute("class",len > 0 ? 'vis1' : 'vis0');
+			
+			len = 0;
+			if(trim12(SelectRoot(obj,['hidden','contacts','line1','itm','Phone']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','contacts','line2','itm','Fax']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','contacts','line3','itm','Email']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','contacts','line4','itm','Url']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','contacts','line5','itm','C_Ext_RU']).value).length > 0) len++;
+			if(trim12(SelectRoot(obj,['hidden','contacts','line5','itm','C_Ext_EN']).value).length > 0) len++;
+			SelectSubNode(mainRoot,'exs_C').setAttribute("class",len > 0 ? 'vis1' : 'vis0');
+			
+			len = trim12(SelectRoot(obj,['hidden','acomments','itm','OwnerComment']).value).length;
+			SelectSubNode(mainRoot,'exs_my').setAttribute("class",len > 0 ? 'vis1' : 'vis0');
+			
+			len = trim12(SelectRoot(obj,['hidden','mtext','itm','ModeratorText']).value).length;
+			SelectSubNode(mainRoot,'exs_mo').setAttribute("class",len > 0 ? 'vis1' : 'vis0');
+		}
+		
+		// Check Lat/Lon isValid
+		function checkDouble(obj)
+		{
+			obj.style.background = isNaN(parseFloat(obj.value)) ? '#FFCCCC' : '#CCFFCC';
+		}
+		
+		function save(obj) 
+		{ 		
+			var mr = obj;
+			var id = parseInt(trim12(SelectRoot(mr,['line1','itm','id']).value));
+			if(isNaN(id)) id = -1;
+			var str = '<?xml version="1.0" encoding="utf-8"?>\n<POIList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">\n'
+			str += '<POI xmlns="Navicom POI">\n'+
+				'<ID>'+id+'</ID>\n'+
+				'<Region>'+trim12(SelectRoot(mr,['line1','itm','region']).value)+'</Region>\n'+
+				'<Name>\n'+
+				  '<EN>'+trim12(SelectRoot(mr,['name_er','itm','Name_EN']).value)+'</EN>\n'+
+				  '<RU>'+trim12(SelectRoot(mr,['name_er','itm','Name_RU']).value)+'</RU>\n'+
+				'</Name>\n'+
+				'<Lat>'+trim12(SelectRoot(mr,['line1','itm','Lat']).value)+'</Lat>\n'+
+				'<Lon>'+trim12(SelectRoot(mr,['line1','itm','Lon']).value)+'</Lon>\n'+
+				'<SymbolID>'+trim12(SelectRoot(mr,['hidden','itm','SymbolID']).value)+'</SymbolID>\n'+				
+				'<Address>\n'+
+					'<Street>\n'+
+					'<EN>'+trim12(SelectRoot(mr,['hidden','address','line1','itm','Street_EN']).value)+'</EN>\n'+
+					'<RU>'+trim12(SelectRoot(mr,['hidden','address','line1','itm','Street_RU']).value)+'</RU>\n'+
+					'</Street>\n'+
+					'<HouseNo>'+trim12(SelectRoot(mr,['hidden','address','line2','itm','HouseNo']).value)+'</HouseNo>\n'+
+					'<City>\n'+
+					'<EN>'+trim12(SelectRoot(mr,['hidden','address','line3','itm','City_EN']).value)+'</EN>\n'+
+					'<RU>'+trim12(SelectRoot(mr,['hidden','address','line3','itm','City_RU']).value)+'</RU>\n'+
+					'</City>\n'+
+					'<ZIP>'+trim12(SelectRoot(mr,['hidden','address','line4','itm','ZIP']).value)+'</ZIP>\n'+
+					'<Ext>\n'+
+					'<EN>'+trim12(SelectRoot(mr,['hidden','address','line5','itm','A_Ext_EN']).value)+'</EN>\n'+
+					'<RU>'+trim12(SelectRoot(mr,['hidden','address','line5','itm','A_Ext_RU']).value)+'</RU>\n'+
+					'</Ext>\n'+
+				'</Address>\n'+
+				'<Contacts>\n'+
+					
+				'</Contacts>\n'+
+				'<Description>\n'+
+				  '<EN>'+trim12(SelectRoot(mr,['hidden','desc','Desc_EN']).value)+'</EN>\n'+
+				  '<RU>'+trim12(SelectRoot(mr,['hidden','desc','Desc_RU']).value)+'</RU>\n'+
+				'</Description>\n'+
+				'<Owner>'+trim12(SelectRoot(mr,['bottom','itm','Owner']).value)+'</Owner>\n'+
+				'<Expires>'+trim12(SelectRoot(mr,['name_er','itm','Expires']).value)+'</Expires>\n'+
+				'<OwnerComment>'+trim12(SelectRoot(mr,['hidden','acomments','itm','OwnerComment']).value)+'</OwnerComment>\n'+
+				'<CreatedBy>'+trim12(SelectRoot(mr,['hidden','itm','CreatedBy']).value)+'</CreatedBy>\n'+
+				'<InState>'+trim12(SelectRoot(mr,['line1','itm','InState']).value)+'</InState>\n'+
+				'<ModeratorText>'+trim12(SelectRoot(mr,['hidden','mtext','itm','ModeratorText']).value)+'</ModeratorText>\n';
+				try
+				{
+					str += '<ModeratorComment>'+trim12(SelectRoot(mr,['hidden','mcomment','itm2','ModeratorComment']).value)+'</ModeratorComment>\n';
+				} catch (e) {};
+				str += '</POI>\n';			
+			str += '</POIList>';
+			alert(str); 
+		}		
+		
+		function sCat(obj) 
+		{ 
+			alert('select cat');
+		}		
+		function reload(obj) 
+		{ 
+			DeleteMarker(obj);
+			alert('reload'); 
+			SetMarker(obj,true);
+		}		
+	</script>
+	
+	<script type="text/javascript">	 
+	   var mapMarkerObj = $('div#POIList div#POI')[0];
+	   SelectRoot(mapMarkerObj,['bottom','itm','mrkSet']).checked = true;	   
+	   var mIndex = 0;
+	   var map = null;
+	   var geocoder = null;
+
+	   
+	   var baseIcon = new GIcon(G_DEFAULT_ICON);
+        baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
+        baseIcon.iconSize = new GSize(20,34);
+        baseIcon.shadowSize = new GSize(37,34);
+        baseIcon.iconAnchor = new GPoint(9,34);
+        baseIcon.infoWindowAnchor = new GPoint(9,2);
+        
+       var styt = new GIcon(baseIcon);
+	   var letter = String.fromCharCode("A".charCodeAt(0) + 0);
+	   styt.image = "http://www.google.com/mapfiles/marker" + letter + ".png";
+	   
+	   function initialize() 
+	   {
+            if (GBrowserIsCompatible()) {
+                map = new GMap2(document.getElementById("map_canvas"));
+                map.setCenter(new GLatLng(55, 38), 5);
+                geocoder = new GClientGeocoder();
+                
+                // OpenStreetMap Copyright
+		var copycol = new GCopyrightCollection("");		
+        var copy = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180),new GLatLng(90,180)), 0, "&copy;2010 <a href='http://www.openstreetmap.org' style='font-size:10px;' target='_blank'>OpenStreetMap</a> contributors");
+        copycol.addCopyright(copy);				
+		
+		// OpenStreetMap (Mapnik Render)
+		var tileMapnik = new GTileLayer(copycol,1,18);
+        tileMapnik.myBaseURL = "http://tile.openstreetmap.org/";
+		tileMapnik.getTileUrl = function (a,b,c) { return this.myBaseURL + "/" + b + "/" + a.x + "/" + a.y + ".png";};
+		tileMapnik.isPng = function () { return true;}
+        tileMapnik.getOpacity = function() {return 1.0;}
+        var layer0 = [tileMapnik];
+        var mapnikMap = new GMapType(layer0, G_SATELLITE_MAP.getProjection(), "OSM-M", {alt:'Карта проекта OpenStreetMap (Mapnik Render)'});
+        map.addMapType(mapnikMap);
+        map.addMapType(G_HYBRID_MAP);
+		map.setMapType(mapnikMap); // Set Default Map Type
+		
+		// OpenStreetMap (MapSurfer Render)
+		var MapSurfer = new GTileLayer(copycol,1,18);
+        MapSurfer.myBaseURL = "http://tiles1.mapsurfer.net/tms_r.ashx?";
+		MapSurfer.getTileUrl = function (a,b,c) { return this.myBaseURL + "z=" + b + "&x=" + a.x + "&y=" + a.y;};
+		MapSurfer.isPng = function () { return true;}
+        MapSurfer.getOpacity = function() {return 1.0;}
+        var layer0 = [MapSurfer];
+        var MapSurferMap = new GMapType(layer0, G_SATELLITE_MAP.getProjection(), "OSM-MS", {alt:'Карта проекта OpenStreetMap (MapSurfer Render)'});
+        map.addMapType(MapSurferMap);
+		
+		// OpenStreetMap (MapSurfer Topo Render)
+		var MapSurferTopo = new GTileLayer(copycol,1,18);
+        MapSurferTopo.myBaseURL = "http://tiles2.mapsurfer.net/tms_t.ashx?";
+		MapSurferTopo.getTileUrl = function (a,b,c) { return this.myBaseURL + "z=" + b + "&x=" + a.x + "&y=" + a.y;};
+		MapSurferTopo.isPng = function () { return true;}
+        MapSurferTopo.getOpacity = function() {return 1.0;}
+        var layer0 = [MapSurferTopo];
+        var MapSurferMapTopo = new GMapType(layer0, G_SATELLITE_MAP.getProjection(), "OSM-MST", {alt:'Карта проекта OpenStreetMap (MapSurfer Topo Render)'});
+        map.addMapType(MapSurferMapTopo);      
+		
+		// OpenStreetMap (Opnvkarte Render)
+		var Opnvkarte = new GTileLayer(copycol,1,18);
+        Opnvkarte.myBaseURL = "http://tile.xn--pnvkarte-m4a.de/tilegen";
+		Opnvkarte.getTileUrl = function (a,b,c) { return this.myBaseURL + "/" + b + "/" + a.x + "/" + a.y + ".png";};
+		Opnvkarte.isPng = function () { return true;}
+        Opnvkarte.getOpacity = function() {return 1.0;}
+        var layer0 = [Opnvkarte];
+        var OpnvkarteMap = new GMapType(layer0, G_SATELLITE_MAP.getProjection(), "OSM-OV", {alt:'Карта проекта OpenStreetMap (Opnvkarte Render)'});
+        map.addMapType(OpnvkarteMap);
+		
+		// Navitel Copyright
+		var copycol = new GCopyrightCollection("");		
+        var copynav = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180),new GLatLng(90,180)), 0, "&copy;2010 <a href='http://www.navitel.su' style='font-size:10px;' target='_blank'>Navitel</a>");
+        copycol.addCopyright(copynav);	
+		
+		// Navitel
+		var Navitel = new GTileLayer(copycol,1,18);
+        Navitel.myBaseURL = "http://maps.navitel.su/navitms.fcgi?t=";
+		Navitel.getTileUrl = function (a,b,c) 
+		{ 
+			var xx = a.x.toString();
+			while(xx.length < 8) xx = '0'+xx;
+			var zz = b.toString();
+			while(zz.length < 2) zz = '0'+zz;
+			var yy = Math.round(Math.pow(2,b)-a.y)-1;
+			yy = yy.toString();
+			while(yy.length < 8) yy = '0'+yy;
+			return this.myBaseURL + xx + ',' + yy + ',' + zz;
+		};
+		Navitel.isPng = function () { return true;}
+        Navitel.getOpacity = function() {return 1.0;}
+        var layer0 = [Navitel];
+        var NavitelMap = new GMapType(layer0, G_SATELLITE_MAP.getProjection(), "Navitel", {alt:'Карта Navitel'});
+        map.addMapType(NavitelMap);
+		
+		// Wikimapia Copyright
+		var copycol = new GCopyrightCollection("");		
+        var copyWikimapia = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180),new GLatLng(90,180)), 0, "&copy;2010 <a href='http://www.wikimapia.orf' style='font-size:10px;' target='_blank'>Wikimapia</a>");
+        copycol.addCopyright(copyWikimapia);	
+		
+		// Wikimapia
+		var Wikimapia = new GTileLayer(copycol,1,18);
+        Wikimapia.myBaseURL = ["http://i",".wikimapia.org/?lng=1&"];		
+		Wikimapia.getTileUrl = function (a,b,c)  {  return this.myBaseURL[0] + ((a.x % 4) + (a.y % 4)*4) + this.myBaseURL[1] + 'x=' + a.x + '&y='+a.y+'&zoom='+b; };
+		Wikimapia.isPng = function () { return true;}
+        Wikimapia.getOpacity = function() {return 1.0;}
+        var layer0 = [Wikimapia];
+        var WikimapiaMap = new GMapType(layer0, G_SATELLITE_MAP.getProjection(), "Wikimapia", {alt:'Карта Wikimapia'});
+        map.addMapType(WikimapiaMap);
+				
+		// Генштаб Copyright
+		var copycolG = new GCopyrightCollection("");		
+        var copyG = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180),new GLatLng(90,180)), 0, "&copy;2010 <a href='http://www.in7ane.com/' style='font-size:10px;' target='_blank'>Генштаб</a>");
+        copycolG.addCopyright(copyG);	
+		
+		// Генштаб
+	    var tileIN7 = new GTileLayer(copycolG,1,18);
+        tileIN7.myBaseURL = "http://www.in7ane.com/topomaps/tiles/";
+		tileIN7.getTileUrl = function (xy,z,c) { return this.myBaseURL + z + '/'+xy.x+'/'+xy.y+'.jpg';  };
+		tileIN7.isPng = function () { return false; }
+        tileIN7.getOpacity = function() {return 1.0;}
+        var layer1 = [tileIN7];
+        var IN7Map = new GMapType(layer1, G_SATELLITE_MAP.getProjection(), "Генштаб", {alt:'Сканы Генштабовских карт с in7ane.com'});
+        map.addMapType(IN7Map);   
+                
+        
+        // Рельеф Maps For Free Copyright
+		var copycolMFF = new GCopyrightCollection("");		
+        var copyMFF = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180),new GLatLng(90,180)), 0, "&copy;2010 <a href='http://www.maps-for-free.com/' style='font-size:10px;' target='_blank'>Maps for Free</a>");
+        copycolMFF.addCopyright(copyMFF);	
+        
+        // Рельеф Maps For Free
+	    var tileMFF = new GTileLayer(copycolMFF,1,18);
+        tileMFF.myBaseURL = "http://www.maps-for-free.com/layer/relief/";
+		tileMFF.getTileUrl = function (xy,z,c) { return this.myBaseURL + '/z' + z + '/row'+xy.y+'/'+z+'_'+xy.x+'-'+xy.y+'.jpg';  };
+		tileMFF.isPng = function () { return false; }
+        tileMFF.getOpacity = function() {return 1.0;}
+        var layer2 = [tileMFF];
+        var MFFMap = new GMapType(layer2, G_SATELLITE_MAP.getProjection(), "Maps4Free", {alt:'Карта рельефа с проекта Maps-for-Free'});
+        map.addMapType(MFFMap);   
+       
+        // Yahoo Copyright
+		var copycolYH1 = new GCopyrightCollection("");		
+        var copyYH1 = new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180),new GLatLng(90,180)), 0, "&copy;2010 <a href='http://maps.yahoo.com/' style='font-size:10px;' target='_blank'>Yahoo! Maps</a>");
+        copycolYH1.addCopyright(copyYH1);	
+        
+        // Yahoo Maps
+	    var tileYH1 = new GTileLayer(copycolYH1,1,18);
+        tileYH1.myBaseURL = "http://us.maps1.yimg.com/us.tile.maps.yimg.com/tl?v=4.1&md=2&r=1";
+		tileYH1.getTileUrl = function (xy,z,c) { return this.myBaseURL + '&x='+xy.x+'&y='+(((Math.round(Math.pow(2,z))/2)-1)-xy.y)+'&z='+(z+1);  };
+		tileYH1.isPng = function () { return true;}
+        tileYH1.getOpacity = function() {return 1.0;}
+        var layer3 = [tileYH1];
+        var YH1Map = new GMapType(layer3, G_SATELLITE_MAP.getProjection(), "Yahoo!", {alt:'Карта Yahoo!'});
+        map.addMapType(YH1Map);  
+        
+        // Yahoo Sat
+	    var tileYH2 = new GTileLayer(copycolYH1,1,18);
+        tileYH2.myBaseURL = "http://aerial.maps.yimg.com/ximg?v=1.8&t=a&s=256&r=1";
+		tileYH2.getTileUrl = function (xy,z,c) { return this.myBaseURL + '&x='+xy.x+'&y='+(((Math.round(Math.pow(2,z))/2)-1)-xy.y)+'&z='+(z+1);  };
+		tileYH2.isPng = function () { return true;}
+        tileYH2.getOpacity = function() {return 1.0;}
+        var layer4 = [tileYH2];
+        var YH2Map = new GMapType(layer4, G_SATELLITE_MAP.getProjection(), "Yahoo!Sat", {alt:'Спутниковые снимки Yahoo!'});
+        map.addMapType(YH2Map);  
+        
+        // Yahoo Hyb
+	    var tileYH3 = new GTileLayer(copycolYH1,1,18);
+        tileYH3.myBaseURL = "http://aerial.maps.yimg.com/ximg?v=2.5&t=p&s=256&r=1";
+		tileYH3.getTileUrl = function (xy,z,c) { return this.myBaseURL + '&x='+xy.x+'&y='+(((Math.round(Math.pow(2,z))/2)-1)-xy.y)+'&z='+(z+1);  };
+		tileYH3.isPng = function () { return true;}
+        tileYH3.getOpacity = function() {return 1.0;}
+        var layer5 = [tileYH2,tileYH3];
+        var YH3Map = new GMapType(layer5, G_SATELLITE_MAP.getProjection(), "Yahoo!Hyb", {alt:'Спутниковая карта Yahoo! с нанесенными названиями улиц'});
+        map.addMapType(YH3Map);  
+		
+		// Microsoft
+		var getMsnTileUrl = function(a, b, mapType) {
+			var imageSuffix;
+			var mapTypeString;
+			var mapTilesVersion = 22;
+			switch (mapType) {
+				case G_NORMAL_MAP:
+					imageSuffix = ".png";
+					mapTypeString = "r";
+					break;
+				case G_SATELLITE_MAP:
+					imageSuffix = ".jpeg";
+					mapTypeString = "a";
+					break;
+				case G_HYBRID_MAP:
+					imageSuffix = ".jpeg";
+					mapTypeString = "h";
+					break;
+			};			
+			var sTile = '000000';
+			sTile += (parseInt(a.y.toString(2) * 2) + parseInt(a.x.toString(2)));
+			sTile = sTile.substring(sTile.length - b, sTile.length);
+			return 'http://' + mapTypeString + sTile.substring(sTile.length-1, sTile.length) + '.ortho.tiles.virtualearth.net/tiles/' + mapTypeString + sTile + imageSuffix + '?g=' + mapTilesVersion;
+		}
+    
+		var msnCopyrights = new GCopyrightCollection();
+		var year = (new Date()).getFullYear();
+		msnCopyrights.addCopyright(new GCopyright(1, new GLatLngBounds(new GLatLng(-90,-180),new GLatLng(90,180)), 0, "&copy;" + year + " Microsoft Corporation  &copy;" + year + " NAVTEQ"));
+
+		var msnRoadLayer = new GTileLayer(msnCopyrights, 1, 16);
+		msnRoadLayer.getTileUrl = function(a, b) { return getMsnTileUrl(a, b, G_NORMAL_MAP); }
+	
+		var msnSatelliteLayer = new GTileLayer(msnCopyrights, 1, 16);
+		msnSatelliteLayer.getTileUrl = function(a, b) { return getMsnTileUrl(a, b, G_SATELLITE_MAP); };
+	
+		var msnHybridLayer = new GTileLayer(msnCopyrights, 1, 16);
+		msnHybridLayer.getTileUrl = function(a, b) { return getMsnTileUrl(a, b, G_HYBRID_MAP); };
+	
+		var msnRoadMapType = new GMapType([msnRoadLayer], G_NORMAL_MAP.getProjection(), 'MS Map', {});
+		var msnSatelliteMapType = new GMapType([msnSatelliteLayer], G_SATELLITE_MAP.getProjection(), 'MS Sat', {});
+		var msnHybridMapType = new GMapType([msnHybridLayer], G_HYBRID_MAP.getProjection(), 'MS Hyb', {});
+	
+		map.addMapType(msnRoadMapType);
+		map.addMapType(msnSatelliteMapType); 
+		map.addMapType(msnHybridMapType); 
+	    
+		/*
+        var mapControl = new GHierarchicalMapTypeControl();
+        mapControl.clearRelationships();
+        mapControl.addRelationship(YH2Map, YH3Map, "Показать ярлыки", false);
+        map.addControl(mapControl);
+		
+		var mapControlMS = new GHierarchicalMapTypeControl();
+        mapControlMS.clearRelationships();
+        mapControlMS.addRelationship(msnSatelliteMapType, msnHybridMapType, "Показать ярлыки", false);
+        map.addControl(mapControlMS);
+		*/
+		
+		map.addControl(new GMenuMapTypeControl());
+        map.addControl(new GOverviewMapControl());
+        map.addControl(new GLargeMapControl3D());
+        map.addControl(new GScaleControl());
+        map.enableScrollWheelZoom();
+
+		        
+		        GEvent.addListener(map, "click", function(overlay,latlng) 
+		        {				
+					SelectRoot(mapMarkerObj,['line1','itm','Lat']).value = latlng.lat();
+                    SelectRoot(mapMarkerObj,['line1','itm','Lon']).value = latlng.lng(); 
+					SetMarker(mapMarkerObj,true);
+                });
+                
+                //SetMarker(null);
+            };                        
+       }
+	   
+	   function WaitMarker(obj)
+	   {
+			var root = SelectRootPOI(obj);
+			clearTimeout(root.markerTimeout);
+			root.markerTimeout = setTimeout(function(){SetMarker(obj);},500);
+	   }
+	   
+	   function SelectMarker(obj)
+	   {
+			mapMarkerObj = SelectRootPOI(obj);
+	   }
+	   
+	   function CenterMap(obj)
+	   {
+			var root = SelectRootPOI(obj);	
+			if(root.marker != null) 
+				map.setCenter(root.marker.getLatLng(), map.getZoom());
+			else
+				SetMarker(obj);
+	   }
+       
+	//POI No
+	function MapPOI(point, id, InState) {	    
+      this.point_ = point;
+      this.id_ = id;
+      this.InState_ = InState;
+    }
+    MapPOI.prototype = new GOverlay();
+    MapPOI.prototype.initialize = function(map) {
+      var div = document.createElement("div");
+      this.color_ = '#FFFFFF';
+      if(this.InState_ == 0) this.color_ = 'white';
+      if(this.InState_ == 1) this.color_ = '#CCCCFF';
+      if(this.InState_ == 2) this.color_ = '#FFFFCC';
+      if(this.InState_ == 3) this.color_ = '#CCFFCC';
+      if(this.InState_ == 4) this.color_ = '#FFCCCC';
+	  if(this.InState_ == 5) this.color_ = 'black';
+      div.style.borderTop = 'solid 1px ' + this.color_;
+      div.style.position = "absolute";
+      div.style.textAlign = "center";
+      div.style.fontSize = "9px";
+      div.innerHTML = this.id_;
+      map.getPane(G_MAP_MAP_PANE).appendChild(div);
+      this.map_ = map;
+      this.div_ = div;      
+    }
+    MapPOI.prototype.remove = function() {
+      this.div_.parentNode.removeChild(this.div_);
+    }
+    MapPOI.prototype.copy = function() {
+      return new MapPOI(this.point_, this.id_, this.InState_);
+    }
+    MapPOI.prototype.redraw = function(force) {      
+      if (!force) return; // We only need to redraw if the coordinate system has changed
+      var xy = this.map_.fromLatLngToDivPixel(this.point_);
+      this.div_.style.width = "40px";
+      this.div_.style.height = "14px";
+      this.div_.style.left = (xy.x - 20) + "px";
+      this.div_.style.top = (xy.y + 1) + "px";
+    }
+
+	   
+       function SetMarker(obj,dontMoveMap)
+       {
+	        var root = SelectRootPOI(obj);	
+			var markerLetter = SelectRoot(obj,['cats','itm2','mStyle','mLetter']).innerHTML;
+            if(root.marker != null) 
+			{
+				map.removeOverlay(root.marker);				
+				map.removeOverlay(root.mapPOI);
+			};
+            var vlat = parseFloat(SelectRoot(root,['line1','itm','Lat']).value);
+            var vlon = parseFloat(SelectRoot(root,['line1','itm','Lon']).value);
+			
+			if(isNaN(vlat)) return false;
+            if(isNaN(vlon)) return false; 
+			
+            var latlng = new GLatLng(vlat,vlon);
+			
+			var markerIcon = new GIcon(baseIcon);
+			//var markerLetter = String.fromCharCode("A".charCodeAt(0) + 0);
+			markerIcon.image = "http://www.google.com/mapfiles/marker" + markerLetter + ".png";
+            
+			root.marker = new GMarker(latlng, {draggable: true, icon: markerIcon});			
+			root.marker.value = "X";
+			GEvent.addListener(root.marker, "dragstart", function() {
+               map.removeOverlay(root.mapPOI);			   
+            });
+            GEvent.addListener(root.marker, "dragend", function() {
+               SelectRoot(root,['line1','itm','Lat']).value = root.marker.getLatLng().lat();
+               SelectRoot(root,['line1','itm','Lon']).value = root.marker.getLatLng().lng(); 
+			   root.mapPOI = new MapPOI(root.marker.getLatLng(), SelectRoot(root,['line1','itm','id']).value, SelectRoot(root,['line1','itm','InState']).value);
+			   map.addOverlay(root.mapPOI);
+            });
+            GEvent.addListener(root.marker,"click", function() { return false; });
+		    map.addOverlay(root.marker);
+		    
+			root.mapPOI = new MapPOI(latlng, SelectRoot(root,['line1','itm','id']).value, SelectRoot(root,['line1','itm','InState']).value);
+			map.addOverlay(root.mapPOI);
+			
+            if((dontMoveMap === undefined) || (dontMoveMap != true)) map.setCenter(root.marker.getLatLng(), map.getZoom());
+			return true;
+       }
+	   
+	   function DeleteMarker(obj)
+       {
+			var root = SelectRootPOI(obj);
+            if(root.marker != null) 
+			{
+				map.removeOverlay(root.marker);
+				map.removeOverlay(root.mapPOI);
+			};
+			root.marker = null;
+       }
+	   
+	   var pageLettersCache = [];
+	   function GetAvailableLetter()
+	   {
+			var x = 0;
+			var ltr = '';
+			while(ltr != 'Z')
+			{
+				ltr = String.fromCharCode("A".charCodeAt(0) + (x++));
+				var ex = false;
+				$('div#POIList div#POI b#mLetter').each(function(index,value)
+				{ 
+					if(value.innerHTML == ltr) ex = true;
+				});
+				if(!ex) break;
+			};			
+			return ltr;
+	   }
+       	   
+	   function init()
+	   {
+			// Init Map
+	        initialize(); 
+			
+			// Init POI Letters for Marker
+			$('div#POIList div#POI b#mLetter').each(function(index,value)
+			{ 
+				value.innerHTML = String.fromCharCode("A".charCodeAt(0) + index);
+			});
+			
+			// Set POI Markers on Map
+			var markerSet = false;
+			$('div#POIList div#POI').each(function(index,value)
+			{ 
+				if(markerSet)
+					SetMarker(value,true); 
+				else
+					markerSet = SetMarker(value); 
+			});
+	   }	   
+    </script>
+	
+</html>

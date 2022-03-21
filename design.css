@@ -1,0 +1,12 @@
+﻿		body { margin:0px;background:url('des_imgs/bgRoad.png') no-repeat; }
+		div#topMenuDiv { position:absolute;top:0px;left:50%;height:30px;width:946px;margin-left:-473px;background:url('des_imgs/topMenu.png') no-repeat; }
+		div#btn_Login { position:absolute;top:3px;left:50%;height:17px;width:17px;margin-left:446px; }
+		div#topCaption { position:absolute;top:36px;left:50%;height:14px;width:137px;margin-left:-418px;background:url('des_imgs/topCaption.png') no-repeat; } 
+		div#topLogo { position:absolute;top:38px;left:50%;height:44px;width:76px;margin-left:-498px;background:url('des_imgs/topLogo.png') no-repeat;z-index:100; }
+		div#map_canvas { position:absolute;top:59px;left:50%;margin-left:-459px;width:920px;height:620px;text-align:center;background:#F0F0F0; }
+		div#map_buttons { position:absolute;top:0px;left:50%;width:0px;height:0px;}
+		div#btn_Hand { position:absolute;top:88px;left:50%;margin-left:-482px;width:16px;height:16px; }
+		div#btn_Add { position:absolute;top:110px;left:50%;margin-left:-482px;width:16px;height:16px; }
+		div#btn_Correct { position:absolute;top:132px;left:50%;margin-left:-482px;width:16px;height:16px; }
+		div#underMap { position:absolute;top:690px;left:50%;margin-left:-459px;width:918px;height:14px;background:#ccffcc;padding:2px;font-size:10px;font-family:Verdana,Arial; }
+		div#footer { width:920px;height:40px;;background:url('des_imgs/footer.png') no-repeat;color:#909090; }

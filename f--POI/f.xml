@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<POIList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <POI xmlns="Navicom POI">
+    <ID>-1</ID>
+    <Region>0</Region>
+    <Name>
+      <EN />
+      <RU />
+    </Name>
+    <Lat>0</Lat>
+    <Lon>0</Lon>
+    <SymbolID />
+    <Address>
+      <Street>
+        <EN />
+        <RU />
+      </Street>
+      <HouseNo />
+      <City>
+        <EN />
+        <RU />
+      </City>
+      <ZIP />
+      <Ext>
+        <EN />
+        <RU />
+      </Ext>
+    </Address>
+    <Contacts>
+      <Phone />
+      <Fax />
+      <Email />
+      <Ext>
+        <EN />
+        <RU />
+      </Ext>
+      <URL />
+    </Contacts>
+    <Description>
+      <EN />
+      <RU />
+    </Description>
+    <Owner>0</Owner>
+    <DTCreated>2010-10-13T15:59:23.2475918+04:00</DTCreated>
+    <DTModified>2010-10-13T15:59:23.2475918+04:00</DTModified>
+    <Expires>2020-10-13T15:59:23.2475918+04:00</Expires>
+    <OwnerComment />
+    <CreatedBy />
+    <InState>1</InState>
+    <ModeratorText />
+    <ModeratorComment />
+  </POI>
+  
+</POIList>

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Навиком POI и Предупреждения</title>    	
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAPJwcxJWgstC-TQdLD0LjoRTUsxlQJ9YZ4wb5ueu7uKCpKgWA1BR2VCNcGy4p1s_a7WvvhK-QyQzplw" type="text/javascript"></script>	
+	<script src="mainscript.js" type="text/javascript" charset="utf-8"></script>	
+	<link rel="stylesheet" type="text/css" href="design.css"/>
+	<style type="text/css">
+		div#mainBody { position:absolute;top:720px;left:50%;margin-left:-459px;width:920px;height:20px; }
+		.MBauth { }
+	</style>
+</head>
+<body>
+	<div id="topMenuDiv">
+		<div id="topmenu" style="margin-top:3px;margin-left:10px;font-family: Verdana, Arial;font-size:12px;">
+			<b style="color:maroon;">Имя пользователя</b> &nbsp; - &nbsp; 
+			Карта | 
+			Мои POI | 
+			Настройки
+		</div>
+	</div>
+	<div id="btn_Login">
+		<a id="a_Login" href="#" onclick="return false;" title="Выйти"><img src="des_imgs/btn_Exit.png" border="0"/></a>
+	</div>
+	
+	<div id="topCaption"></div><div id="topLogo" title="Navicom www.navicom.ru"></div>
+	<div id="map_canvas"><br/><br/><br/><br/><br/><br/><br/>Подождите, идет загрузка карты...</div>
+	
+	<div id="map_buttons" class="MBauth">
+		<div id="btn_Hand">
+			<a id="a_Hand" href="#" onclick="return false;" title="Навигация по карте"><img src="des_imgs/hand_16_dis.png" border="0"/></a>
+		</div>
+		<div id="btn_Add">
+			<a id="a_Add" href="#" onclick="return false;" title="Клик на карте чтобы добавить POI"><img src="des_imgs/btn_AddIdle.png" border="0"/></a>
+		</div>
+		<div id="btn_Correct">
+			<a id="a_Correct" href="#" onclick="return false;" title="Клик на маркере чтобы изменить POI"><img src="des_imgs/btn_CorrectIdle.png" border="0"/></a>
+		</div>
+	</div>
+	
+	<div id="underMap">
+		Объекты будут отображены, когда на выбранном участке карты их будет не более двухсот. Сейчас их 4265535. Приблизьте карту.
+	</div>
+	
+	<div id="mainBody">
+		Здесь будет дополнительное описание точки/точек в режимах добавления, правки или корректировки.
+		<br/><br/>
+		<div id="footer">
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Навиком <b>POI и Предупреждения</b>. &copy; Copyrights ЗАО Навиком. 2010.
+		</div>
+	</div>	
+</body>
+</html>
